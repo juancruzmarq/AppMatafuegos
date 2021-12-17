@@ -5,7 +5,8 @@ router.get('/', (req,res)=>{
         error: null,
         data: {
             title: 'mi ruta protegida',
-            user: req.user
+            user: req.user,
+            route: 'interfaces/html/admin.html'
         }
     })
 })
