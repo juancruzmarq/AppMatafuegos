@@ -23,58 +23,61 @@
         <div class="col-sm-8 main-section">
             <div class="modal-content">
                 <div class="col-12 mt-4">
-                    <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button"><i class="fas fa-upload"></i>  Cargar Cliente </button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button" data-toggle="modal" data-target="#cargarClienteModal"><i class="fas fa-upload"></i>  Cargar Cliente </button>
                     <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button"><i class="fas fa-fire-extinguisher"></i>  Vencimiento </button>
                     <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button"><i class="fas fa-users"></i>  Clientes </button>
                 </div>
                 
             </div>
         </div>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-        </button>
         
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="cargarClienteModal" tabindex="-1" role="dialog" aria-labelledby="cargarClienteModal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="cargarClienteModal">Cargar Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" onclick="limpiarFormulario()" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+                        <form>
+                            <div class="form-group">
+                                <label for="txtNombre">Nombre</label>
+                                <input type="text" class="form-control" id="txtNombre" placeholder="Ingrese nombre...">
+                            </div>
+                            <div class="form-group">
+                              <label for="txtEmail">Email</label>
+                              <input type="email" class="form-control" id="txtEmail"  placeholder="Ingrese email...">
+                              <span id="error-message-email" class="alert alert-danger d-none errMsgEmail w-100 text-center mt-2" style="margin-bottom: -10px;"></span>
+                            </div>
+                            <div class="form-group">
+                              <label for="txtTelefono">Teléfono</label>
+                              <input type="text" class="form-control" id="txtTelefono" placeholder="Ingrese teléfono...">
+                              <span id="error-message-telefono" class="alert alert-danger d-none errMsgTelefono w-100 text-center mt-2" style="margin-bottom: -10px;"></span>
+
+                            </div>
+                            <div class="form-group">
+                              <label for="txtDireccion">Direccion</label>
+                              <input type="text" class="form-control" id="txtDireccion" placeholder="Ingrese dirección...">
+                            </div>
+                            <div class="form-group">
+                              <label for="txtCuil">Cuil</label>
+                              <input type="text" class="form-control" id="txtCuil" placeholder="Ingrese cuil...">
+                              <span id="error-message-cuil" class="alert alert-danger d-none errMsgCuil w-100 text-center mt-2" style="margin-bottom: -10px;"></span>
+
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" id="btnCancelarCliente" onclick="limpiarFormulario()" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="button" id="btnGuardarCliente" onclick="guardarCliente()" class="btn btn-success">Guardar Cliente</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        const getToken = () => {
-            token = localStorage.getItem("auth-token");
-            if(token == undefined || token == null || token == ""){
-                window.location.replace("http://127.0.0.1:5500/interfaces/html/loginScreen.html");
-            };
-        }
-
-        const destroyToken = () => {
-            setTimeout(() => {
-                token = localStorage.setItem("auth-token", "");
-                getToken();
-            }, 300000);
-        }
-
-        getToken();
-        destroyToken();
-        
-        
-    </script>
+    <script src="../js/adminScreen.js"></script>
 </body>
 </html>
