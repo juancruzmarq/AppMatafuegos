@@ -51,6 +51,7 @@ router.get('/buscar', async(req,res)=>{
     res.json({
         cliente
     });
+    
 })
 
 module.exports = router;
