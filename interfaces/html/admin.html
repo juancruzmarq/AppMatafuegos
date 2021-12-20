@@ -9,21 +9,71 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/flatly/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     
     <!-- Los iconos tipo Solid de Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
     <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="../css/admin.css" >
 </head>
 <body>
-    <h1>Buenas tardes</h1>
+    <div class="modal-dialog text-center d-flex justify-content-center align-items-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class="col-12 mt-4">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button"><i class="fas fa-upload"></i>  Cargar Cliente </button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button"><i class="fas fa-fire-extinguisher"></i>  Vencimiento </button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="submit-button"><i class="fas fa-users"></i>  Clientes </button>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-        token = localStorage.getItem("auth-token");
-        if(token == undefined || token == null || token == ""){
-            window.location.replace("http://127.0.0.1:5500/interfaces/html/loginScreen.html");
-            
-        };
+        const getToken = () => {
+            token = localStorage.getItem("auth-token");
+            if(token == undefined || token == null || token == ""){
+                window.location.replace("http://127.0.0.1:5500/interfaces/html/loginScreen.html");
+            };
+        }
+
+        const destroyToken = () => {
+            setTimeout(() => {
+                token = localStorage.setItem("auth-token", "");
+                getToken();
+            }, 300000);
+        }
+
+        getToken();
+        destroyToken();
+        
         
     </script>
 </body>
