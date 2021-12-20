@@ -24,12 +24,16 @@ const validaToken = require('./routes/validate-token');
 const admin = require('./routes/admin');
 const clienteRoutes = require('./routes/cliente');
 const matafuegoRoutes = require('./routes/matafuego');
+const clientesRoutes = require('./routes/cliente');
+const cliente = require('./routes/cliente')
 
 //rutas middlewares
 app.use('/api/user', authRoutes);
 app.use('/api/admin', validaToken, admin);
 app.use('/api/cliente', clienteRoutes)
 app.use('/api/matafuego', matafuegoRoutes)
+app.use('/api/clientes', clientesRoutes)
+app.use('/api/cliente', cliente)
 
 //Iniciar servidor 
 app.listen(PORT, ()=>{

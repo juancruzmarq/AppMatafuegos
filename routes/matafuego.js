@@ -5,6 +5,7 @@ const Matafuego = require('../models/Matafuego');
 
 router.post('/', async(req,res)=>{
 
+    // Formato YYYY-mm-dd
     const fecha = new Date(req.body.fechaCarga)
     
 
@@ -14,8 +15,7 @@ router.post('/', async(req,res)=>{
         fechaCarga:  fecha,
         clienteID: req.body.clienteID
     })
-    
-   
+ 
         try{
             const matafuegoDB = await matafuego.save()
             res.json({

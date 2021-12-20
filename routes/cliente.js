@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const Cliente = require('../models/Cliente');
 
 
@@ -13,8 +12,6 @@ router.post('/', async(req,res)=>{
         cuil: req.body.cuil,
         matafuegos: []
     })
-
-    
         try{
             const clienteDB = await cliente.save()
             res.json({
@@ -25,6 +22,35 @@ router.post('/', async(req,res)=>{
             res.status(400).json(error)
         }
 
+})
+
+
+router.get('/', async(req,res)=>{
+
+
+    const[total, clientes] = await Promise.all([
+        Cliente.countDocuments(),
+        Cliente.find()
+    ])
+
+    res.json({
+        total,
+        clientes
+    })
+    
+
+})
+
+
+router.get('/buscar', async(req,res)=>{
+
+    const name = req.body.name;
+
+    const cliente = await Cliente.findOne({name: name})
+
+    res.json({
+        cliente
+    });
 })
 
 module.exports = router;
