@@ -3,10 +3,6 @@ const mongoose = require('mongoose'); // base da datos
 const bodyparser = require('body-parser'); // para capturar el body
 require('dotenv').config() // ocultar variables de entorno
 const cors = require('cors');
-var corsOptions = {
-    origin: '*', // Reemplazar con dominio
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 const PORT = 8000;
 const app = express(); // iniciar app
@@ -14,7 +10,7 @@ const app = express(); // iniciar app
 // capturar body
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 //Conexion base de datos
 const uri = `mongodb+srv://${process.env.USER}:${process.env.PASSWORD}@cluster0.cdd6b.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`
@@ -26,11 +22,12 @@ mongoose.connect(uri)
 const authRoutes = require('./routes/auth');
 const validaToken = require('./routes/validate-token');
 const admin = require('./routes/admin');
+const clienteRoutes = require('./routes/cliente');
 
 //rutas middlewares
 app.use('/api/user', authRoutes);
 app.use('/api/admin', validaToken, admin);
-
+app.use('/api/cliente', clienteRoutes)
 
 //Iniciar servidor 
 app.listen(PORT, ()=>{
