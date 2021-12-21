@@ -1,11 +1,12 @@
-txtNombre = document.getElementById("txtNombre")
-txtEmail = document.getElementById("txtEmail")
-txtDireccion = document.getElementById("txtDireccion")
-txtTelefono = document.getElementById("txtTelefono")
-txtCuil = document.getElementById("txtCuil")
-errorMessageEmail = document.getElementById("error-message-email")
-errorMessageTelefono = document.getElementById("error-message-telefono")
-errorMessageCuil = document.getElementById("error-message-cuil")
+txtNombre = document.getElementById("txtNombre");
+txtEmail = document.getElementById("txtEmail");
+txtDireccion = document.getElementById("txtDireccion");
+txtTelefono = document.getElementById("txtTelefono");
+txtCuil = document.getElementById("txtCuil");
+errorMessageEmail = document.getElementById("error-message-email");
+errorMessageTelefono = document.getElementById("error-message-telefono");
+errorMessageCuil = document.getElementById("error-message-cuil");
+
 
 const getToken = () => {
     token = localStorage.getItem("auth-token");
@@ -138,5 +139,11 @@ const validateNumber = (value) => {
     }
 }
 
+const redirigirAClientesScreen = () =>{
+    window.location.replace("http://127.0.0.1:5500/interfaces/html/clientesScreen.html")
+}
+
 getToken();
 destroyToken();
+document.getElementById("btnClientes").addEventListener('click', ()=>{redirigirAClientesScreen()});
+

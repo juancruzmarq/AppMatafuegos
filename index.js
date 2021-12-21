@@ -36,6 +36,6 @@ app.use('/api/clientes', clientesRoutes)
 app.use('/api/cliente', cliente)
 
 //Iniciar servidor 
-app.listen(PORT, ()=>{
+app.listen(PORT, () =>{
     console.log(`servidor corriendo en puerto http://localhost:${PORT}`);
 })

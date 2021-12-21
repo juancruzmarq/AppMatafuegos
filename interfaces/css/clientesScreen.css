@@ -1,0 +1,53 @@
+body{
+
+    background: linear-gradient(180deg, rgba(253, 175, 99, 0.24) 0%, rgba(167, 130, 110, 0.280417) 50.52%, rgba(83, 87, 121, 0.32) 100%);
+    background-size: cover;
+    height: 100vh;
+}
+
+.main-section{
+    margin:0 auto;
+    margin-top:25%;
+    padding: 0;
+}
+
+.modal-content{
+    background-color: #D4A373;
+    opacity: 1;
+    padding: 0 20px;
+    box-shadow: 0px 0px 3px #848484;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-dialog{
+    height: 80%;
+}
+
+
+
+button{
+    width: 30%;
+}
+
+.forgot{
+    padding: 5px 0;
+}
+
+.forgot a{
+    color: white;
+}
+
+
+.buttons-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0px solid #dee2e6 !important; 
+}

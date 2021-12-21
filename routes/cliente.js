@@ -30,7 +30,7 @@ router.get('/', async(req,res)=>{
 
     const[total, clientes] = await Promise.all([
         Cliente.countDocuments(),
-        Cliente.find()
+        Cliente.find().select('name')
     ])
 
     res.json({
@@ -44,9 +44,9 @@ router.get('/', async(req,res)=>{
 
 router.get('/buscar', async(req,res)=>{
 
-    const name = req.body.name;
+    const id = req.body._id;
 
-    const cliente = await Cliente.findOne({name: name})
+    const cliente = await Cliente.findOne({_id: id})
 
     res.json({
         cliente
