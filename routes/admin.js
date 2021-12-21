@@ -1,14 +1,7 @@
+const { admin } = require('../controllers/admin');
+const {validaToken} = require('../controllers/validaToken')
 const router = require('express').Router();
 
-router.get('/', (req,res)=>{
-    res.json({
-        error: null,
-        data: {
-            title: 'mi ruta protegida',
-            user: req.user,
-            route: 'interfaces/html/admin.html'
-        }
-    })
-})
+router.get('/', validaToken, admin);
 
-module.exports = router
+module.exports = router;

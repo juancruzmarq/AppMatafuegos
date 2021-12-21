@@ -12,6 +12,8 @@ const verifyToken = (req, res, next ) =>{
     }catch(error){
         res.status(400).json({error: 'token no valido'})
     }
+
+    next();
 }
 
-module.exports = verifyToken;
+module.exports ={ verifyToken }
