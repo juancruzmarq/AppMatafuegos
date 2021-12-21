@@ -40,29 +40,18 @@ const getClientes = async () => {
 
 const getClienteEspecifico = async (id) => {
     let settings = {
-        "url": "http://localhost:8000/api/cliente/buscar",
+        "url": `http://localhost:8000/api/cliente/buscar/${id}`,
         "method": "GET",
         "timeout": 0,
         "headers": {
-            "auth-token": localStorage.getItem("auth-token"),
+            "auth-token": localStorage.getItem('auth-token'),
             "Content-Type": "application/x-www-form-urlencoded"
-        },
-        "data":  JSON.stringify({
-            "_id": id
-        })
+        }
     };
-    let result;
-    
-    try {
-        result = await $.ajax(settings);  
-        console.log(result)
-        return result;
-        
-    } catch (error) {
-        console.error(error);
-    }
 
-    
+    $.ajax(settings).done(function (response) {
+        console.log(response.cliente[0]);
+    });
 }
 const pintarClientes = async () => {
 

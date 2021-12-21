@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { isValidObjectId } = require('mongoose');
 const Cliente = require('../models/Cliente');
 
 
@@ -42,16 +43,22 @@ router.get('/', async(req,res)=>{
 })
 
 
-router.get('/buscar', async(req,res)=>{
-
-    const id = req.body._id;
-
-    const cliente = await Cliente.findOne({_id: id})
-
-    res.json({
-        cliente
-    });
-    
-})
+router.get('/buscar/:id', function(req, res) {
+    let id = req.params.id;
+    Cliente.find({ _id: id }, function(err, clienteBD) {
+        if (err) {
+            return res.json({
+                success: false,
+                msj: 'No se encontró ningún cliente con ese id',
+                err
+            });
+        } else {
+            return res.json({
+                success: true,
+                cliente: clienteBD
+            });
+        }
+    })
+});
 
 module.exports = router;

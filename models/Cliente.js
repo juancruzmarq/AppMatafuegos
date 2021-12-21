@@ -7,13 +7,14 @@ const matafuegoSchema = mongoose.Schema({
     },
     codigo: {
         type: String,
-        required: true
+   required: true
     },
     fechaCarga: {
         type: Date,
     }
 })
 const clienteSchema = mongoose.Schema({
+    
     name: {
         type: String,
         required: true,
