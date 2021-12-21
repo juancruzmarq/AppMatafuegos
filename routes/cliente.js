@@ -43,9 +43,9 @@ router.get('/', async(req,res)=>{
 })
 
 
-router.get('/buscar/:id', function(req, res) {
+router.get('/buscar/:id', async (req, res) => {
     let id = req.params.id;
-    Cliente.find({ _id: id }, function(err, clienteBD) {
+    await Cliente.find({ _id: id }, function(err, clienteBD) {
         if (err) {
             return res.json({
                 success: false,
