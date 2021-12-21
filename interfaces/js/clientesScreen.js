@@ -39,6 +39,7 @@ const getClientes = async () => {
 }
 
 const getClienteEspecifico = async (id) => {
+    let cliente;
     let settings = {
         "url": `http://localhost:8000/api/cliente/buscar/${id}`,
         "method": "GET",
@@ -49,10 +50,14 @@ const getClienteEspecifico = async (id) => {
         }
     };
 
-    $.ajax(settings).done(function (response) {
-        console.log(response.cliente[0]);
+    await $.ajax(settings).done(function (response) {
+        cliente = response.cliente[0];
     });
+
+    return cliente;
+
 }
+
 const pintarClientes = async () => {
 
     let html = ``;
@@ -69,12 +74,13 @@ const pintarClientes = async () => {
             <th scope="row">${cliente.name}</th>
             <td class="buttons-row">
                 <button class="btn btn-danger btn-sm mr-1"><i class="fas fa-fire"></i></button>
-                <button class="btn btn-success btn-sm ml-1" data-target="#clienteModal" onclick="verCliente('${cliente._id}')"><i class="fas fa-eye"></i></button>
+                <button class="btn btn-success btn-sm ml-1" data-toggle="modal"
+                data-target="#clienteModal" onclick="pintarClienteEspecifico('${cliente._id}')"><i class="fas fa-eye"></i></button>
             </td>
         </tr>
         `;
     });
-
+    
     let plantilla = `<div class="col-sm-12 main-section">
                         <div class="modal-content">
                             <div class="col-12 mt-4">
@@ -99,12 +105,26 @@ const pintarClientes = async () => {
 }
 
 
-const verCliente = (id) => {
-
-
-    // let html = ``;
-    // document.getElementById("data-modal").innerHTML = html;
-    console.log(id);
+const pintarClienteEspecifico = async (id) => {
+    console.log(id)
+    let modal =  document.getElementById("data-modal");
+    modal.innerHTML = `<div class="spinner-border" role="status">
+                                                          <span class="sr-only">Loading...</span>
+                                                       </div>`;
+    let cliente = await getClienteEspecifico(id);
+    console.log(cliente);
+    
+    let html =  `
+    <ul class="list-group">
+        <li class="list-group-item">${cliente.name}</li>
+        <li class="list-group-item">${cliente.email}</li>
+        <li class="list-group-item">${cliente.telefono}</li>
+        <li class="list-group-item">${cliente.direccion}</li>
+        <li class="list-group-item">${cliente.cuil}</li>
+    </ul>
+    `;
+    modal.innerHTML = html;
+    
 }
 
 getToken();
