@@ -5,7 +5,7 @@ const Usuario = require('../models/User');
 
 const validarJWT = async( req = request, res = response, next ) => {
 
-    const token = req.header('x-token');
+    const token = req.header('auth-token')
 
     if ( !token ) {
         return res.status(401).json({
@@ -13,34 +13,17 @@ const validarJWT = async( req = request, res = response, next ) => {
         });
     }
 
-    try {
-        
-        const { uid } = jwt.verify( token, process.env.TOKEN_SECRET );
-
-        // leer el usuario que corresponde al uid
-        const usuario = await Usuario.findById( uid );
-
-        if( !usuario ) {
-            return res.status(401).json({
-                msg: 'Token no válido - usuario no existe DB'
-            })
-        }
-         
-        
-        req.usuario = usuario;
-        next();
-
-    } catch (error) {
-
-        console.log(error);
-        res.status(401).json({
-            msg: 'Token no válido'
-        })
+    if(!token) return res.status(401).json({error: 'Acceso denegado'})
+    try{
+        const verified = jwt.verify(token, process.env.TOKEN_SECRET)
+        req.user = verified
+        next()
+    }catch(error){
+        res.status(400).json({error: 'token no valido'})
     }
-
 }
 
 
 
 
-module.exports = {validarJWT};
+module.exports =  {validarJWT};

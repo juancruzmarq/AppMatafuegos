@@ -16,8 +16,9 @@ const matafuegosPost =  async(req,res)=>{
         clienteID: clienteID
     })
     
-    const existeCliente =  Cliente.findOneAndUpdate({_id: clienteID}, {$push: {matafuegos: matafuego}});
-    
+    const existeCliente =  Cliente.updateOne({_id: clienteID},{$addToSet: {matafuegos: ["matafuego"]}});
+   
+
     if(existeCliente){
         try{
             const matafuegoDB = await matafuego.save()
