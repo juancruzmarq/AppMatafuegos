@@ -16,13 +16,11 @@ const matafuegosPost =  async(req,res)=>{
         clienteID: clienteID
     })
     
-    const existeCliente =  Cliente.findOneAndUpdate(clienteID,{$push: {matafuegos: matafuego}})
+    const existeCliente =  Cliente.findOneAndUpdate({_id: clienteID}, {$push: {matafuegos: matafuego}});
     
     if(existeCliente){
         try{
             const matafuegoDB = await matafuego.save()
-            
-            
             
                 res.json({
                     error: null,

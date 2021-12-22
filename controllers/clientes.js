@@ -37,20 +37,17 @@ const clientesGet = async(req,res)=>{
 
 const clienteGet = async(req, res) => {
     let id = req.params.id;
-    await Cliente.find({ _id: id }, function(err, clienteBD) {
-        if (err) {
-            return res.json({
-                success: false,
-                msj: 'No se encontró ningún cliente con ese id',
-                err
-            });
-        } else {
-            return res.json({
-                success: true,
-                cliente: clienteBD
-            });
-        }
-    })
+    const cliente = await Cliente.findOne({_id: id})
+
+    if(cliente){
+        res.json({
+            cliente
+        })
+    }else{
+        res.status(400).json({
+            msg: "Cliente no encontrado"
+        })
+    }
 }
 
 
