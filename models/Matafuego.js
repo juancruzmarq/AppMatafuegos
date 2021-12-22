@@ -9,7 +9,7 @@ const matafuegoSchema = mongoose.Schema({
         type: String,
     },
     fechaCarga: Date,
-    clienteID: mongoose.SchemaTypes.ObjectId
+    
 })
 
 module.exports = mongoose.model('Matafuego', matafuegoSchema);

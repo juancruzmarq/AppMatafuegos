@@ -6,36 +6,29 @@ const matafuegosPost =  async(req,res)=>{
 
     // Formato YYYY-mm-dd
     const fecha = new Date(req.body.fechaCarga)
-    
-    const clienteID = req.body.clienteID
+    const id = req.params.id;
 
     const matafuego = new Matafuego({
         nroInterno: req.body.nroInterno,
         codigo: req.body.codigo,
         fechaCarga:  fecha,
-        clienteID: clienteID
     })
-    
-    const existeCliente =  Cliente.updateOne({_id: clienteID},{$addToSet: {matafuegos: ["matafuego"]}});
-   
-
-    if(existeCliente){
-        try{
-            const matafuegoDB = await matafuego.save()
-            
-                res.json({
-                    error: null,
-                    data: matafuegoDB
-                })
-
-        }catch(error){
-                res.status(400).json(error)
-            }
-    }else{
-        return res.status(400).json({
-            msg: "El cliente no existe"
+     
+    console.log(matafuego);
+    try{
+        await Cliente.findByIdAndUpdate(id, { $push: { 'matafuegos': matafuego } })
+        const cliente = await Cliente.findOne({_id: id})
+        res.json({
+            error: null,
+            data: cliente
         })
+            
+                
+
+    }catch(error){
+        res.status(400).json(error)
     }
+    
         
             
         

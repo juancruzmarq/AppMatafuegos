@@ -51,7 +51,7 @@ const getClienteEspecifico = async (id) => {
     };
 
     await $.ajax(settings).done(function (response) {
-        cliente = response.cliente[0];
+        cliente = response.cliente;
     });
 
     return cliente;
@@ -80,7 +80,7 @@ const pintarClientes = async () => {
         </tr>
         `;
     });
-    
+
     let plantilla = `<div class="col-sm-12 main-section">
                         <div class="modal-content">
                             <div class="col-12 mt-4">
@@ -106,15 +106,13 @@ const pintarClientes = async () => {
 
 
 const pintarClienteEspecifico = async (id) => {
-    console.log(id)
-    let modal =  document.getElementById("data-modal");
+    let modal = document.getElementById("data-modal");
     modal.innerHTML = `<div class="spinner-border" role="status">
                                                           <span class="sr-only">Loading...</span>
                                                        </div>`;
     let cliente = await getClienteEspecifico(id);
-    console.log(cliente);
-    
-    let html =  `
+
+    let html = `
     <ul class="list-group">
         <li class="list-group-item">${cliente.name}</li>
         <li class="list-group-item">${cliente.email}</li>
@@ -124,7 +122,7 @@ const pintarClienteEspecifico = async (id) => {
     </ul>
     `;
     modal.innerHTML = html;
-    
+
 }
 
 getToken();
