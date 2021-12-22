@@ -81,17 +81,17 @@ const clientePut = async(req,res) =>{
 
 const clienteDelete = async(req,res)=>{
 
-    const {id} = req.params;
+    let id = req.params.id;
 
-    const existe = await Cliente.findById(id)
+    const existe = await Cliente.find({_id: id});
 
     if(existe){
-        const clienteDelete = await Cliente.findByIdAndDelete(id);
+        const clienteDeleted = await Cliente.findByIdAndDelete(id);
     
-        if(clienteDelete){
+        if(clienteDeleted){
             res.json({
-                msg: "Cliente eliminado",
-                clienteDelete
+                msg: "Cliente eliminado correctamente",
+                clienteDeleted
             })  
         }else{
             res.status(400).json({

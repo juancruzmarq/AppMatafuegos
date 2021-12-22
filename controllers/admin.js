@@ -1,6 +1,6 @@
-const admin = async(req,res, next)=>{
+const admin = async(req,res)=>{
 
-    res.json({
+     res.json({
         error: null,
         data: {
             title: 'mi ruta protegida',
@@ -8,9 +8,9 @@ const admin = async(req,res, next)=>{
             route: 'interfaces/html/admin.html'
         }
     
-    }, )
+    })
 }
 
-module.exports ={
+module.exports = {
     admin
 }

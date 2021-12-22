@@ -1,7 +1,7 @@
 const { admin } = require('../controllers/admin');
-const {validaToken} = require('../controllers/validaToken')
 const router = require('express').Router();
+const {validarJWT} = require('../controllers/validaToken')
 
-router.get('/', admin);
+router.get('/', validarJWT, admin);
 
 module.exports = router;

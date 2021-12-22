@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 
-const registrerPost = async(req,res)=>{
+const registerPost = async(req,res)=>{
 
     const saltos = await bcrypt.genSalt(10);
     const password = await bcrypt.hash(req.body.password, saltos)
@@ -59,6 +59,6 @@ const loginPost =  async(req,res)=>{
 }
 
 module.exports = {
-    registrerPost,
+    registerPost,
     loginPost
 }
