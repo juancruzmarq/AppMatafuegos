@@ -37,7 +37,6 @@ class Server {
         //this.app.use('/api/admin', require('../routes/admin'));
         this.app.use('/api/cliente', require('../routes/cliente'))
         this.app.use('/api/matafuego', require('../routes/matafuego'))
-        this.app.use('/api/clientes', require('../routes/cliente'))
     }
 
     listen(){
