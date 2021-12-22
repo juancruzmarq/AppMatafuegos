@@ -34,7 +34,7 @@ class Server {
     routes(){
         //rutas middlewares
         this.app.use('/api/user', require('../routes/auth'));
-        //this.app.use('/api/admin', require('../routes/admin'));
+        this.app.use('/api/admin', require('../routes/admin'));
         this.app.use('/api/cliente', require('../routes/cliente'))
         this.app.use('/api/matafuego', require('../routes/matafuego'))
     }

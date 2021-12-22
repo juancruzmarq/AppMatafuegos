@@ -34,10 +34,6 @@ const registrerPost = async(req,res)=>{
 }
 
 const loginPost =  async(req,res)=>{
-    //validaciones del login
-    const {error} =  schemaLogin.validate(req.body);
-    if (error) return res.status(400).json({ error: error.details[0].message});
-
     const user = await User.findOne({email: req.body.email});
     if (!user) return res.status(400).json({error: 'Usuario no encontrado'});
 
