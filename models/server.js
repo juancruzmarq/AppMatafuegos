@@ -17,7 +17,6 @@ class Server {
 
         //rutas
         this.routes();
-
         
     }
 
