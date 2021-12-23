@@ -27,7 +27,9 @@
     <div class="modal-dialog text-center d-flex justify-content-center align-items-center" id="table-box">
 
     </div>
-    <!-- Modal -->
+
+    <!-- Modal Vista Cliente -->
+
     <div class="modal fade" id="clienteModal" tabindex="-1" role="dialog" aria-labelledby="clienteModal"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -41,10 +43,54 @@
                 <div class="modal-body" id="data-modal">
 
                 </div>
-                <div class="modal-footer">
-                    <button type="button" id="btnAceptar" class="btn btn-success">Aceptar</button>
+                <div class="modal-footer" id="cliente-modal-footer">
+                    
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal confirmar eliminación cliente -->
+    <div class="modal fade" id="eliminarCliente" tabindex="-1" role="dialog" aria-labelledby="eliminarCliente"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eliminarCliente">¿Está seguro de eliminar este cliente?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="data-modal">
+
+                    <span></span>
+                    <br>
+                    <span>Si lo eliminas, se eliminarán todos los matafuegos y archivos relacionados a él.</span> 
+                </div>
+                <div class="modal-footer" id="cliente-modal-footer-confirmacion">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal editar cliente -->
+    <div class="modal fade" id="editarClienteModal" tabindex="-1" role="dialog" aria-labelledby="editarClienteModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarClienteModal">Editar Cliente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="editar-cliente-modal">
+                    
+                </div>
+                <div class="modal-footer" id="editar-cliente-modal-footer">
+                   
+                </div>
             </div>
         </div>
     </div>

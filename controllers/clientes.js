@@ -58,7 +58,7 @@ const clientePut = async(req,res) =>{
     const cliente = await Cliente.find({_id: id})
 
     if(cliente){
-        await Cliente.findOneAndUpdate(id,{name: name, 
+        await Cliente.findOneAndUpdate({_id:id},{name: name, 
             email: email, telefono: telefono, direccion: direccion, cuil:cuil });
         
         const clienteActualizado = await Cliente.find({_id: id})
